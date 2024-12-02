@@ -17,9 +17,10 @@
                 <div class="d-flex flex-column my-1 mx-2">
                     <label for="gravedad" class="form-label">Gravedad</label>
                     <select name="gravedad">
-                        <option value="">Baja</option>
-                        <option value="">Media</option>
-                        <option value="">Grave</option>
+                        <option value="" selected>Elige la gravedad</option>
+                        <option value="bg-success">Baja</option>
+                        <option value="bg-warning">Media</option>
+                        <option value="bg-danger">Grave</option>
                     </select>
                 </div>
                 <div class="d-flex flex-column my-1 mx-2">
@@ -36,7 +37,12 @@
 export default {
     name: 'Cita',
     data() {
-        return {};
+        return {
+
+        };
+    },
+    computed:{
+
     }
 };
 </script>
