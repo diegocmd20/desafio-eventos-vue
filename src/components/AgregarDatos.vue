@@ -1,5 +1,5 @@
 <template>
-    <div class="container my-1">
+    <div :class="['card', 'm-1', cambiarColor]" style="width: 14em;">
         <h6>Paciente</h6>
         <p>{{ paciente }}</p>
         <h6>Fecha</h6>
@@ -19,12 +19,27 @@ export default {
     name: 'AgregarDatos',
     props: {
         paciente: String,
-        fecha: Date,
-        hora: Date,
+        fecha: [String, Date],
+        hora: [String, Date],
         gravedad: String,
         motivo: String,
+    },
+    computed: {
+        cambiarColor() {
+            if (this.gravedad === 'Baja') {
+                return 'bg-success';
+            } else if (this.gravedad === 'Media') {
+                return 'bg-warning';
+            } else if (this.gravedad === 'Grave') {
+                return 'bg-danger';
+            } else {
+                return 'bg-dark';
+            }
+        }
     }
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

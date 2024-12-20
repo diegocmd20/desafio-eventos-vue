@@ -4,7 +4,7 @@
 
             <div class="d-flex flex-column my-1 mx-2">
                 <label for="paciente" class="form-label fst-semibold">Paciente</label>
-                <input v-model="paciente" name="paciente" type="text" class="form-control" placeholder="Nombre del Paciente">
+                <input v-model="paciente" name="paciente" type="text" placeholder="Nombre del Paciente">
             </div>
             <div class="d-flex flex-column my-1 mx-2">
                 <label for="fecha" class="form-label fst-semibold">Fecha</label>
@@ -18,9 +18,9 @@
                 <label for="gravedad" class="form-label">Gravedad</label>
                 <select v-model="gravedad" name="gravedad">
                     <option value="" selected>Elige la gravedad</option>
-                    <option value="bg-success">Baja</option>
-                    <option value="bg-warning">Media</option>
-                    <option value="bg-danger">Grave</option>
+                    <option value="Baja">Baja</option>
+                    <option value="Media">Media</option>
+                    <option value="Grave">Grave</option>
                 </select>
             </div>
             <div class="d-flex flex-column my-1 mx-2">
@@ -29,11 +29,15 @@
             </div>
 
         </div>
-        <button type="submit">Agregar</button>
-        <div>
-            <AgregarDatos :paciente="paciente" :fecha="fecha" :hora="hora" :gravedad="gravedad" :motivo="motivo"/>
+        <button @click="agregarTarjeta" type="button">Agregar</button>
+    </div>
+    <div class="row">
+        <div v-for="(tarjeta, index) in tarjetas" :key="index" class="col-12 col-md-3">
+            <AgregarDatos :paciente="tarjeta.paciente" :fecha="tarjeta.fecha" :hora="tarjeta.hora"
+                :gravedad="tarjeta.gravedad" :motivo="tarjeta.motivo" />
         </div>
     </div>
+
 </template>
 
 <script>
@@ -42,18 +46,35 @@ export default {
     name: 'Cita',
     data() {
         return {
+            tarjetas: [],
             paciente: '',
             fecha: '',
             hora: '',
             gravedad: '',
-            motivo:'',
+            motivo: '',
         };
     },
     components: {
         AgregarDatos,
     },
     methods: {
+        agregarTarjeta() {
+            const nuevaTarjeta = {
+                paciente: this.paciente,
+                fecha: this.fecha,
+                hora: this.hora,
+                gravedad: this.gravedad,
+                motivo: this.motivo,
+            };
 
+            this.tarjetas.push(nuevaTarjeta);
+
+            this.paciente = '';
+            this.fecha = '';
+            this.hora = '';
+            this.gravedad = '';
+            this.motivo = '';
+        },
     }
 };
 </script>
