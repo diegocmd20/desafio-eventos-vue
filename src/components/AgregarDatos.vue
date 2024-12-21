@@ -1,5 +1,5 @@
 <template>
-    <div :class="['card', 'm-1', cambiarColor]" style="width: 14em;">
+    <div :class="['card', 'm-1', cambiarColor]" style="width: 12em;">
         <h6>Paciente</h6>
         <p>{{ paciente }}</p>
         <h6>Fecha</h6>
@@ -10,7 +10,7 @@
         <p>{{ gravedad }}</p>
         <h6>Motivo</h6>
         <p>{{ motivo }}</p>
-        <button type="submit">Eliminar</button>
+        <button @click="eliminarTarjeta" type="submit">Eliminar</button>
     </div>
 </template>
 
@@ -35,6 +35,9 @@ export default {
             } else {
                 return 'bg-dark';
             }
+        },
+        eliminarTarjeta(){
+            this.$emit('eliminar');
         }
     }
 };
